@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+    <head>
+        <meta charset="utf-8">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        
+        <style>
+            ul{
+                list-style-type: none;
+            }
+            #todos{
+                margin: 0 0 80px 0;
+            }
+        
+        </style>
+        
+        <script>
+            
+        // Read text from text box and append to unordered list
+        var addItem = function(){
+            var todoName = $('#addBox').val();
+            var todoHTML = '<li class="todoItem"><input class="todoCheckbox" type="checkbox"> ' + todoName + '</li>';
+            $(todoHTML).appendTo('#todos').hide().fadeIn("slow");
+        }
+            
+        
+        
+        
+        $(document).ready(function(){
+            
+            
+            // Call addItem on form submit and empty box
+           $('#addForm').submit(function(event){
+              event.preventDefault();
+              addItem();
+              $('#addBox').val('');
+            });
+            
+            
+            // Delete item when checkbox clicked
+            $('#todos').on('click', 'input', function(){
+               
+              $(this).closest('li').fadeOut("slow").delete();
+               
+           });
+            
+        });
+        
+        </script>
+        
+       
+    </head>
+    <body>
+        
+    <div id="todo-box">
+            
+        <h1>Todo list:</h1>
+        <ul id="todos">
+            <li class="todoItem"><input class="todoCheckbox" type="checkbox"> Create first todo item</li>
+            
+        </ul>
+        
+       <form id="addForm">
+         <div>
+           <p>What else do you need to do?</p>
+           <input id='addBox' type="text">
+           <input type="submit">
+         </div>
+       </form>
+        
+    </div>
+    </body>
+</html>
